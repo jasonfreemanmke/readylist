@@ -58,7 +58,7 @@ export default class HomeScreen extends React.Component {
     //alert(JSON.stringify(token));
     return token
     } catch {
-      alert('Incorrect Username');
+      alert('Incorrect Username or password');
     }
   }
 
@@ -69,7 +69,7 @@ export default class HomeScreen extends React.Component {
       this.setState({loggedIn: true });
       //alert(token);
     } catch(error) {
-      alert (error);
+      // alert (error);
     }
   }
 
@@ -84,6 +84,12 @@ export default class HomeScreen extends React.Component {
 
   render() {
   return (
+
+
+
+
+
+
     <View style={styles.container}>
 
 

@@ -37,7 +37,7 @@ export default class RecentCleans extends React.Component {
       }).then(res => res.json());
       this.setState({cleans: cleans.recent_cleans});
     } catch(error){
-      alert(error.message)
+      alert("You must be logged in")
     }
   }
 
@@ -59,7 +59,8 @@ export default class RecentCleans extends React.Component {
 
 
         { !this.state.loggedIn ? (
-          <Text>Please Login!</Text>
+          <Text></Text>
+
         ): (
 
             <FlatList

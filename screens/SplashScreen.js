@@ -17,12 +17,12 @@ export default function SplashScreenA() {
 
         <ImageBackground
             style={styles.container}
-            source={require('../assets/images/')}
+            source={require('../assets/images/window.jpg')}
             imageStyle={{ resizeMode: 'cover' }}
         >
 
 
-            <Image style={styles.logo}source={require('../assets/logo2.png')} />
+            <Image style={styles.logo}source={require('../assets/images/logo2.png')} />
             <Text style={styles.textStyle}>Advancing healthcare quality by transforming hospital service teams.</Text>
         </ImageBackground>
 

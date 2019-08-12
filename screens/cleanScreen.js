@@ -36,7 +36,7 @@ export default class RoomsScreen extends React.Component {
       }).then(res => res.json());
       this.setState({cleans: cleans.rooms});
     } catch(error){
-      alert(error.message)
+      alert("You must be logged in")
     }
   }
 
@@ -58,7 +58,7 @@ export default class RoomsScreen extends React.Component {
 
 
           { !this.state.loggedIn ? (
-              <Text>Please Login!</Text>
+              <Text></Text>
           ): (
 
               <FlatList

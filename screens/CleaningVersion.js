@@ -40,7 +40,7 @@ export default class RecentCleans extends React.Component {
             }).then(res => res.json());
             this.setState({cleans: cleans.cleaning_versions});
         } catch(error){
-            alert(error.message)
+            alert("You must be logged in")
         }
     }
 
@@ -56,11 +56,14 @@ export default class RecentCleans extends React.Component {
 
 
 
+
+
+
             <ScrollView style = { styles.container } >
 
 
                 { !this.state.loggedIn ? (
-                    <Text>Please Login!</Text>
+                    <Text></Text>
                 ): (
 
 

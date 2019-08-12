@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import RecentCleans from '../screens/RecentCleans';
 import CleanScreen from '../screens/cleanScreen';
 import CleaningVersion from "../screens/CleaningVersion";
+import SplashScreen from "../screens/SplashScreen";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -86,12 +87,30 @@ SettingsStack.navigationOptions = {
 SettingsStack.path = '';
 
 
+const SplashStack = createStackNavigator(
+    {
+        Settings: SplashScreen,
+    },
+    config
+);
+
+SettingsStack.navigationOptions = {
+    tabBarLabel: 'Cleaning Version',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    ),
+};
+
+SettingsStack.path = '';
+
+
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
     VerStack,
+    SplashStack,
 
 });
 
