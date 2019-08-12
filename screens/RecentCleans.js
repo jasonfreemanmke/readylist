@@ -68,14 +68,14 @@ export default class RecentCleans extends React.Component {
                 <>
 
                   <View/>
-                  <Text>{item.date},{item.room}</Text>
-                  <Text>{item.room}</Text>
-                  <Text>{item.inspector}</Text>
+                  <Text>{item.date}      {item.room}        {item.inspection_score}</Text>
+
                 </>
               )}
             />
         )}
       </ScrollView>
+
 
 
 

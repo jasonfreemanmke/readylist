@@ -45,8 +45,8 @@ export default class RecentCleans extends React.Component {
     }
 
     render() {
-        return (
 
+        return (
 
 
 
@@ -78,7 +78,10 @@ export default class RecentCleans extends React.Component {
 
                                 <View style={styles.button}>
 
-                                    <Button title={item.name} />
+                                    <Button
+                                        // onPress = {handlePress}
+                                        title={item.name}
+                                    color = "white"/>
 
 
 
@@ -115,8 +118,8 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     button: {
-        backgroundColor: '#0D76BC',
-        color: 'white',
+        backgroundColor: '#0d76bc',
+
         marginTop: 25,
         marginLeft: 36,
         borderRadius: 15,
@@ -149,5 +152,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#FFFFFF',
         flex:1,
     },
+
+
 
 });

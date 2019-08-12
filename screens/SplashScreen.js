@@ -17,7 +17,7 @@ export default function SplashScreenA() {
 
         <ImageBackground
             style={styles.container}
-            source={require('../assets/window.png')}
+            source={require('../assets/images/')}
             imageStyle={{ resizeMode: 'cover' }}
         >
 

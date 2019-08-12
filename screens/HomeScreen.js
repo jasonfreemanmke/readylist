@@ -8,12 +8,13 @@ import {
   Text,
   TouchableOpacity,
   View,
-  AsyncStorage
+  AsyncStorage,
+    ImageBackground
 } from 'react-native';
 import { Input, Button } from 'react-native-ui-kitten';
 import { MonoText } from '../components/StyledText';
 import { Formik } from 'formik';
-import ImageBackground from "react-native-web/dist/exports/ImageBackground";
+
 
 export default class HomeScreen extends React.Component {
   constructor(props){
@@ -84,6 +85,7 @@ export default class HomeScreen extends React.Component {
   render() {
   return (
     <View style={styles.container}>
+
 
       <ScrollView
         style={styles.container}
