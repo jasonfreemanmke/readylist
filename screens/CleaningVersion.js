@@ -84,7 +84,9 @@ export default class RecentCleans extends React.Component {
                                     <Button
                                         // onPress = {handlePress}
                                         title={item.name}
-                                    color = "white"/>
+                                    color = "white"
+
+                                    />
 
 
 
@@ -93,6 +95,7 @@ export default class RecentCleans extends React.Component {
 
                             </>
                         )}
+                        keyExtractor={item => item.id}
                     />
 
                 )}
@@ -155,6 +158,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#FFFFFF',
         flex:1,
     },
+
+
 
 
 

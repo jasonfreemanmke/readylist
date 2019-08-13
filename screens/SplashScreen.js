@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 
+
+
+
+
+
+
 export default function SplashScreenA() {
     return (
 
@@ -16,13 +22,11 @@ export default function SplashScreenA() {
         // </View>
 
         <ImageBackground
-            style={styles.container}
-            source={require('../assets/images/window.jpg')}
-            imageStyle={{ resizeMode: 'cover' }}
-        >
+            style={styles.bgImage}
+            source={require('../assets/images/window2-min.jpg')}>
 
 
-            <Image style={styles.logo}source={require('../assets/images/logo2.png')} />
+            <Image style={styles.logo}source={require('../assets/images/logo2-min.png')} />
             <Text style={styles.textStyle}>Advancing healthcare quality by transforming hospital service teams.</Text>
         </ImageBackground>
 
@@ -40,23 +44,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    bgImage:{
-        flex: 1,
-        resizeMode: 'cover',
-
-    },
 
     logo:
         {
 
             width: "75%",
-            marginTop: 10,
+            marginTop: 40,
             padding: 25,
-            marginBottom: 80,
+            marginBottom: 60,
+            marginLeft: 50 ,
         },
     textStyle:{
         fontSize: 20,
+        fontWeight: 'bold',
         textAlign: "center",
         color: "black",
-    }
+        marginBottom: 250,
+
+    },
+    bgImage:{
+        flex: 1,
+
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        resizeMode: 'cover',
+    },
 });

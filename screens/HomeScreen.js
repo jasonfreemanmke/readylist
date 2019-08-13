@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
   AsyncStorage,
-    ImageBackground
+  ImageBackground
 } from 'react-native';
 import { Input, Button } from 'react-native-ui-kitten';
 import { MonoText } from '../components/StyledText';
@@ -88,6 +88,10 @@ export default class HomeScreen extends React.Component {
 
 
 
+      <ImageBackground
+          style={styles.bgImage}
+          source={require('../assets/images/window-min.jpg')}>
+
 
 
     <View style={styles.container}>
@@ -100,8 +104,8 @@ export default class HomeScreen extends React.Component {
           <Image
             source={
               __DEV__
-                // ? require('../assets/images/logo2.png')
-                // : require('../assets/images/robot-prod.png')
+                 // ? require('../assets/images/logo2.png')
+                 // : require('../assets/images/robot-prod.png')
             }
             style={styles.welcomeImage}
           />
@@ -152,6 +156,7 @@ export default class HomeScreen extends React.Component {
 
       </ScrollView>
 
+
       <View style={styles.tabBarInfoContainer}>
         {/*<Text style={styles.tabBarInfoText}>*/}
         {/*  This is a tab bar. You can edit it in:*/}
@@ -165,6 +170,7 @@ export default class HomeScreen extends React.Component {
         </View>
       </View>
     </View>
+      </ImageBackground>
   );
   }
 }
@@ -182,19 +188,25 @@ function DevelopmentModeNotice() {
     );
 
     return (
+
+
+
       <Text style={styles.developmentModeText}>
 
 
-        <Image style={styles.logo}source={require('../assets/images/logo2.png')} />
+        <Image style={styles.logo}source={require('../assets/images/logo2-min.png')} />
 
       </Text>
+
     );
   } else {
     return (
       <Text style={styles.developmentModeText}>
         You are not in development mode: your app will run at full speed.
       </Text>
+
     );
+
   }
 }
 

@@ -72,6 +72,7 @@ export default class RoomsScreen extends React.Component {
                         <Text>{item.name}</Text>
                       </>
                   )}
+                  keyExtractor={item => item.id}
               />
           )}
         </ScrollView>

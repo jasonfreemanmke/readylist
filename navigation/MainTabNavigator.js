@@ -89,7 +89,7 @@ SettingsStack.path = '';
 
 const SplashStack = createStackNavigator(
     {
-        Settings: SplashScreen,
+        Photos: SplashScreen,
     },
     config
 );
