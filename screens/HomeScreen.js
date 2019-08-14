@@ -88,13 +88,13 @@ export default class HomeScreen extends React.Component {
 
 
 
-      <ImageBackground
-          style={styles.bgImage}
-          source={require('../assets/images/window-min.jpg')}>
+
 
 
 
     <View style={styles.container}>
+
+
 
 
       <ScrollView
@@ -167,10 +167,14 @@ export default class HomeScreen extends React.Component {
           <MonoText style={styles.codeHighlightText}>
             {/*navigation/MainTabNavigator.js*/}
           </MonoText>
+
         </View>
+
       </View>
+
     </View>
-      </ImageBackground>
+
+
   );
   }
 }
@@ -209,6 +213,7 @@ function DevelopmentModeNotice() {
 
   }
 }
+
 
 function handleLearnMorePress() {
   WebBrowser.openBrowserAsync(

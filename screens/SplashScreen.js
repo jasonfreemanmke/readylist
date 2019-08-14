@@ -8,18 +8,20 @@ import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 
 
 export default function SplashScreenA() {
+
+
     return (
 
 
 
-        // <View style={styles.container}>
-        //   <Image style={styles.bgImage} source={require('../assets/window.png')} />
+         <View style={styles.container}>
 
 
 
 
 
-        // </View>
+
+
 
         <ImageBackground
             style={styles.bgImage}
@@ -31,7 +33,7 @@ export default function SplashScreenA() {
         </ImageBackground>
 
 
-
+         </View>
 
     );
 }
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
         {
 
             width: "75%",
-            marginTop: 40,
+            marginTop: 50,
             padding: 25,
             marginBottom: 60,
             marginLeft: 50 ,
@@ -60,6 +62,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "black",
         marginBottom: 250,
+        width: 250,
+        height: 128,
+        marginLeft: 60,
 
     },
     bgImage:{

@@ -11,7 +11,8 @@ export default class RecentCleans extends React.Component {
       loading: true,
       cleans: [],
       error: null,
-      loggedIn: false
+      loggedIn: false,
+
     }
   }
   async componentDidMount(){
@@ -40,6 +41,10 @@ export default class RecentCleans extends React.Component {
     } catch(error){
       alert("You must be logged in")
     }
+  }
+
+  getHeader(){
+
   }
 
   render() {

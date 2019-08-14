@@ -4,6 +4,7 @@ import { ExpoLinksView } from '@expo/samples';
 import {Table} from "react-native-table-component";
 import {Input} from "react-native-ui-kitten";
 import Footer from '../constants/Footer'
+import TouchableHighlight from "react-native-web/dist/exports/TouchableHighlight";
 
 export default class RecentCleans extends React.Component {
     constructor(props){
@@ -35,7 +36,7 @@ export default class RecentCleans extends React.Component {
                 },
                 body: JSON.stringify({
                     "jwt": token,
-                    "room_id": "25"
+                    "room_id": "2740"
                 })
             }).then(res => res.json());
             this.setState({cleans: cleans.cleaning_versions});
@@ -59,6 +60,7 @@ export default class RecentCleans extends React.Component {
 
 
 
+
             <ScrollView style = { styles.container } >
 
 
@@ -70,11 +72,12 @@ export default class RecentCleans extends React.Component {
 
 
 
+
+
                     <FlatList
                         data={this.state.cleans}
                         renderItem={({ item }) => (
                             <>
-
 
 
 
@@ -125,11 +128,12 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#0d76bc',
-
+        alignItems: 'center',
         marginTop: 25,
         marginLeft: 36,
         borderRadius: 15,
         height: 57,
+        paddingTop: 10,
     },
     inputContainer: {
         borderBottomColor: '#F5FCFF',
