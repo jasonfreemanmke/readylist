@@ -33,7 +33,7 @@ export default class RoomsScreen extends React.Component {
                 body: JSON.stringify({
                     "jwt": token,
                     "room_id": room,
-                    "cleaning_version_id": clean 
+                    "cleaning_version_id": clean
                 })
             }).then(res => res.json());
             this.setState({cleans: cleans.rooms});
