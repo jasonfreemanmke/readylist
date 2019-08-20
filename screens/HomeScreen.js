@@ -66,6 +66,8 @@ export default class HomeScreen extends React.Component {
     try{
       let token = await this.login(values);
       await AsyncStorage.setItem("token", token.jwt);
+      let location = await this.login(values);
+      await AsyncStorage.setItem("location", {location: token.name});
       this.setState({loggedIn: true });
       //alert(token);
     } catch(error) {
@@ -81,6 +83,8 @@ export default class HomeScreen extends React.Component {
       alert('You are already logged out!')
     }
   }
+
+
 
   render() {
   return (

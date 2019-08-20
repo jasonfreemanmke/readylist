@@ -9,6 +9,7 @@ import CleanScreen from '../screens/cleanScreen';
 import CleaningVersion from "../screens/CleaningVersion";
 import SplashScreen from "../screens/SplashScreen";
 import tableScreen from "../screens/tableScreen";
+import switchLocations from "../screens/switchLocations";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -124,6 +125,23 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const LocStack = createStackNavigator(
+    {
+        Settings: switchLocations,
+    },
+    config
+);
+
+SettingsStack.navigationOptions = {
+    tabBarLabel: 'Switch Locations',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    ),
+};
+
+SettingsStack.path = '';
+
+
 
 
 const tabNavigator = createBottomTabNavigator({
@@ -131,9 +149,9 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
     VerStack,
-    SplashStack,
-    tableStack,
-
+    // SplashStack,
+    // tableStack,
+LocStack,
 });
 
 tabNavigator.path = '';
