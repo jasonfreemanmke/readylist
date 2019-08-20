@@ -1,12 +1,13 @@
 import React from 'react';
-import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View, Button, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View, Button, TextInput, Image } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import {Table} from "react-native-table-component";
 import {Input} from "react-native-ui-kitten";
 import Footer from '../constants/Footer'
 import TouchableHighlight from "react-native-web/dist/exports/TouchableHighlight";
+import * as item from "expo";
 
-export default class RecentCleans extends React.Component {
+export default class switchLocations extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -45,35 +46,46 @@ export default class RecentCleans extends React.Component {
         }
     }
 
-    render() {
+//   getImage = (image){
+//         switch (image){
+//             case "UCSF":
+//                 return require ('../assets/images/UCSF_MedCtr_black_RGB.png')
+//                 break;
+//              case "NYU":
+//                  return require('../assets/images/NYU_Langone.png')
+//
+//         }
+// }
+
+
+
+
+    render()
+
+{
 
         return (
 
 
 
+            <View>
 
 
-
-
-
+                {/*<Image style={styles.logo}source={require('../assets/images/UCSF_196X19.png')} />*/}
+                <Image style={styles.logoNYU}source={require('../assets/images/NYU_116X61.png')} />
 
 
 
 
 
             <ScrollView style = { styles.container } >
-                <View style={styles.container2}>
-                    <TextInput style = {styles.input}
-                               underlineColorAndroid = "transparent"
-                               placeholder = "A2250"
-                               placeholderTextColor = "#000000"
-                               autoCapitalize = "none"
-                               onChangeText = {this.handleRoomNumber}/>
-                </View>
+
 
                 { !this.state.loggedIn ? (
                     <Text></Text>
                 ): (
+
+
 
 
 
@@ -92,7 +104,7 @@ export default class RecentCleans extends React.Component {
                                     <Button
                                         // onPress = {handlePress}
                                         title={item.name}
-                                    color = "white"
+                                        color = "white"
 
                                     />
 
@@ -108,11 +120,10 @@ export default class RecentCleans extends React.Component {
 
                 )}
 
-
-
             </ScrollView>
 
 
+            </View>
 
 
 
@@ -124,8 +135,9 @@ export default class RecentCleans extends React.Component {
 
 
 
-RecentCleans.navigationOptions = {
-    title: 'Cleaning Versions',
+switchLocations.navigationOptions = {
+    title: 'Switch Locations',
+    //<Image source={require('../assets/images/logo.png')}/>
 };
 
 const styles = StyleSheet.create({
@@ -154,7 +166,6 @@ const styles = StyleSheet.create({
         marginBottom:0,
         flexDirection: 'row',
         alignItems:'center',
-        marginTop: 50,
 
         shadowColor: "#808080",
         shadowOffset: {
@@ -172,24 +183,21 @@ const styles = StyleSheet.create({
         borderBottomColor: '#FFFFFF',
         flex:1,
     },
-    input: {
-        width: 300,
-        margin: 10,
-        marginLeft: 36,
-        marginTop: 5,
-        height: 51,
-        borderColor: '#7a42f4',
-        borderWidth: 1,
-        textAlign: 'center',
-        fontSize: 31,
-        backgroundColor: '#AAAAAA',
 
+    logo:{
+        marginTop: 13,
+        marginLeft: 89,
 
-        position: "absolute",
-
+        flexDirection: 'row',
+        alignItems:'center',
     },
-    container2: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff', marginTop: 20, marginBottom: 71, },
 
+    logoNYU:{
+        marginTop: 13,
+        marginLeft: 129,
+        flexDirection: 'row',
+        alignItems:'center',
+    },
 
 
 

@@ -41,6 +41,15 @@ export default class HomeScreen extends React.Component {
     }
   }
 
+  getLocation = async () => {
+    try {
+      let location = await AsyncStorage.getItem("location");
+      alert(location);
+    } catch {
+      alert("No token");
+    }
+  }
+
   login = async (user) => {
     try{
     let token = await fetch(`https://pilot.readylist.com/mobile/authorize/login.php`, {
@@ -57,6 +66,7 @@ export default class HomeScreen extends React.Component {
     //alert(token);
     //alert(JSON.stringify(token));
     return token
+      return location
     } catch {
       alert('Incorrect Username or password');
     }
@@ -68,6 +78,7 @@ export default class HomeScreen extends React.Component {
       await AsyncStorage.setItem("token", token.jwt);
       this.setState({loggedIn: true });
       //alert(token);
+
     } catch(error) {
       // alert (error);
     }
@@ -81,6 +92,21 @@ export default class HomeScreen extends React.Component {
       alert('You are already logged out!')
     }
   }
+
+
+
+  setLocation = async (values) => {
+    try{
+      let token = await this.login(values);
+      await AsyncStorage.setItem("location",{location: location.name});
+      this.setState({loggedIn: true });
+      alert(location);
+
+    } catch(error) {
+      // alert (error);
+    }
+  }
+
 
   render() {
   return (

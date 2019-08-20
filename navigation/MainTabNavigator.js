@@ -9,6 +9,8 @@ import CleanScreen from '../screens/cleanScreen';
 import CleaningVersion from "../screens/CleaningVersion";
 import SplashScreen from "../screens/SplashScreen";
 import tableScreen from "../screens/tableScreen";
+import switchLocations from "../screens/switchLocations";
+import ItemsScreen from "../screens/ItemsScreen";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -116,7 +118,7 @@ const tableStack = createStackNavigator(
 
 SettingsStack.navigationOptions = {
 
-    tabBarLabel: 'table',
+    tabBarLabel: 'Rooms List',
     tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
     ),
@@ -126,14 +128,52 @@ SettingsStack.path = '';
 
 
 
+const LocStack = createStackNavigator(
+    {
+        Settings: switchLocations,
+    },
+    config
+);
+
+LocStack.navigationOptions = {
+    tabBarLabel: 'Switch Locations',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    ),
+};
+
+LocStack.path = '';
+
+
+const ItemsStack = createStackNavigator(
+    {
+        Links: ItemsScreen,
+    },
+    config
+);
+
+ItemsStack.navigationOptions = {
+    tabBarLabel: 'Items',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    ),
+};
+
+ItemsStack.path = '';
+
+
+
+
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
     VerStack,
-    SplashStack,
-    tableStack,
-
+    // SplashStack,
+    // tableStack,
+LocStack,
+    ItemsStack,
 });
 
 tabNavigator.path = '';
