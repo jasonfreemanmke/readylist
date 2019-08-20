@@ -66,8 +66,7 @@ export default class HomeScreen extends React.Component {
     try{
       let token = await this.login(values);
       await AsyncStorage.setItem("token", token.jwt);
-      let location = await this.login(values);
-      await AsyncStorage.setItem("location", {location: token.name});
+
       this.setState({loggedIn: true });
       //alert(token);
     } catch(error) {
@@ -84,7 +83,16 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-
+  getlocation = async (values) => {
+    try{
+      let location = await this.login(values);
+      await AsyncStorage.setItem("location", {location: token.name});
+      this.setState({loggedIn: true });
+      //alert(token);
+    } catch(error) {
+      // alert (error);
+    }
+  }
 
   render() {
   return (
