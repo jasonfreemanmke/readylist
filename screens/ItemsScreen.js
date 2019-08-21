@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
-//import { CheckBox } from 'react-native-elements';
+//import {CheckBox, Header} from 'react-native-elements';
 import CheckBox from 'react-native-modest-checkbox';
 import SelectMultiple from 'react-native-select-multiple';
 
@@ -79,6 +79,7 @@ export default class App extends React.Component {
 
                 {/*this section has fake data coded into it for demo purposes */}
                 <View style={styles.checkbox}>
+
                 <CheckBox
                     label='IV Stand [1]'
                     onChange={(checked) =>
@@ -90,20 +91,41 @@ export default class App extends React.Component {
                     <View style={styles.separator} />
 
 
-
                     <CheckBox
                         style={{flex: 1, padding: 10}}
                         onClick={()=>{
                             this.setState({
-                                isChecked:!this.state.isChecked,
-
+                                isChecked:!this.state.isChecked
                             })
                         }}
                         isChecked={this.state.isChecked}
                         leftText={"CheckBox"}
                     />
+                    <View style={styles.separator} />
 
-                <View>
+                    <CheckBox
+                        label='Alaris IV Pump (Brain) [2]'
+                        onChange={(checked) =>
+
+                           alert('Checked!')}
+                        //checked={this.state.checked}
+
+                    />
+                    <View style={styles.separator} />
+
+
+                    <CheckBox
+                        label='Flip HOB signs, All notification flags in - Sign and place tent card'
+                        onChange={(checked) =>
+
+                            alert('Checked!')}
+                        //checked={this.state.checked}
+                    />
+
+                    <View style={styles.separator} />
+
+
+
                     {/*this will be the rendering of items from the database when the API is ready and able to test */}
                     <SelectMultiple
                         items={roomItems}
@@ -111,11 +133,11 @@ export default class App extends React.Component {
                         onSelectionsChange={this.onSelectionsChange} />
                 </View>
             </View>
-            </View>
 
 
+</View>
 
-        </View>
+
 
         );
     }
@@ -137,7 +159,7 @@ const styles = StyleSheet.create({
         borderColor: '#DCDCDC',
     },
     label: {
-        color: '#999',
+        color: 'red',
         fontSize: 14,
         fontWeight: '500',
         marginBottom: 10,
@@ -196,9 +218,20 @@ const styles = StyleSheet.create({
         position: "absolute"
     },
     checkbox:{
+
         marginTop: 12,
-        marginLeft: 0,
-        backgroundColor: '#ecf0f1',
+        marginLeft: -15,
+        backgroundColor: 'green',
+        width: 285,
+        height: 30,
+
+
+
 
     },
+    cbText:{
+        fontSize: 12,
+        color: 'red',
+    },
+
 });

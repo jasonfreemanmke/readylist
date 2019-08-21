@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
+import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import RecentCleans from '../screens/RecentCleans';
@@ -11,7 +11,9 @@ import SplashScreen from "../screens/SplashScreen";
 import tableScreen from "../screens/tableScreen";
 import switchLocations from "../screens/switchLocations";
 import ItemsScreen from "../screens/ItemsScreen";
-import items from "../screens/items";
+import test1 from "../screens/test1"
+
+
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -76,13 +78,13 @@ SettingsStack.path = '';
 
 const VerStack = createStackNavigator(
     {
-        Settings: CleaningVersion,
+        Settings: test1,
     },
     config
 );
 
 SettingsStack.navigationOptions = {
-    tabBarLabel: 'Cleaning Version',
+    tabBarLabel: 'test',
     tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
     ),

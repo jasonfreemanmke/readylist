@@ -14,6 +14,7 @@ import {
 import { Input, Button } from 'react-native-ui-kitten';
 import { MonoText } from '../components/StyledText';
 import { Formik } from 'formik';
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default class HomeScreen extends React.Component {
