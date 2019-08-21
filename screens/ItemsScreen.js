@@ -9,6 +9,14 @@ import {
 } from 'react-native';
 
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
+//import { CheckBox } from 'react-native-elements';
+import CheckBox from 'react-native-modest-checkbox';
+import SelectMultiple from 'react-native-select-multiple';
+
+const roomItems=['red', 'blue', 'gold']
+
+
+
 
 export default class App extends React.Component {
 
@@ -16,6 +24,13 @@ export default class App extends React.Component {
         progress: 20,
         progressWithOnComplete: 0,
         progressCustomized: 0,
+        selectedItems: [],
+
+
+    }
+
+    onSelectionsChange = (selectedItems) => {
+        this.setState({ selectedItems })
     }
 
     increase = (key, value) => {
@@ -27,31 +42,81 @@ export default class App extends React.Component {
     render() {
         const barWidth = Dimensions.get('screen').width - 30;
         const progressCustomStyles = {
-            backgroundColor: 'red',
-            borderRadius: 0,
-            borderColor: 'orange',
+            backgroundColor: '#0d76bc',
+            borderRadius: 10,
+            borderColor: '#0d76bc',
         };
 
         return (
-            <View style={styles.container}>
-                <View>
+
+
+        <View style={styles.container}>
+
+            <Text style={styles.cleanVersion}>Clean Version: <Text style={styles.bold}>Discharge</Text></Text>
+            <Text style={styles.room}>Room: <Text style={styles.bold}>C6971 - Bed 12</Text></Text>
+                <View style ={styles. progressBar}>
 
                     <ProgressBarAnimated
+                        {...progressCustomStyles}
                         width={barWidth}
-                        value={this.state.progress}
-                        backgroundColorOnComplete="#6CC644"
+                        maxValue={100}
+                        value={this.state.progressCustomized}
                     />
-                    <View style={styles.buttonContainer}>
-                        <View style={styles.buttonInner}>
-                            <Button
-                                title="Increase 20%"
-                                onPress={this.increase.bind(this, 'progress', 20)}
-                            />
-                        </View>
-                    </View>
+                    {/*<View style={styles.buttonContainer}>*/}
+                    {/*    <View style={styles.buttonInner}>*/}
+                    {/*        <Button*/}
+                    {/*            title="Increase 25%"*/}
+                    {/*            onPress={this.increase.bind(this, 'progressCustomized', 25)}*/}
+                    {/*        />*/}
+                    {/*    </View>*/}
+                    {/*</View>*/}
                 </View>
+            <View style={styles.container}>
+                <Text style={styles.blueline}></Text>
+                <Text style={styles.cleanPage}>Assess and Order Equipment</Text>
+                <Text style={styles.details}>Details</Text>
 
+
+                {/*this section has fake data coded into it for demo purposes */}
+                <View style={styles.checkbox}>
+                <CheckBox
+                    label='IV Stand [1]'
+                    onChange={(checked) =>
+
+                        alert('Checked!')}
+                    // checked={this.state.checked}
+
+                />
+                    <View style={styles.separator} />
+
+
+
+                    <CheckBox
+                        style={{flex: 1, padding: 10}}
+                        onClick={()=>{
+                            this.setState({
+                                isChecked:!this.state.isChecked,
+
+                            })
+                        }}
+                        isChecked={this.state.isChecked}
+                        leftText={"CheckBox"}
+                    />
+
+                <View>
+                    {/*this will be the rendering of items from the database when the API is ready and able to test */}
+                    <SelectMultiple
+                        items={roomItems}
+                        selectedItems={this.state.selectedItems}
+                        onSelectionsChange={this.onSelectionsChange} />
+                </View>
             </View>
+            </View>
+
+
+
+        </View>
+
         );
     }
 }
@@ -60,14 +125,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFF',
-        marginTop: 50,
+        marginTop: 20,
         padding: 15,
     },
     buttonContainer: {
-        marginTop: 15,
+        marginTop: 1,
     },
     separator: {
-        marginVertical: 30,
+        marginVertical: 2,
         borderWidth: 0.5,
         borderColor: '#DCDCDC',
     },
@@ -76,5 +141,64 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         marginBottom: 10,
+    },
+
+    cleanVersion: {
+        top: 18,
+        left: 15,
+        width: '50%',
+        height: 17,
+        color: "#121212",
+        position: "absolute"
+    },
+
+    room: {
+        top: 18,
+        left: 205,
+        width: '50%',
+        height: 17,
+        color: "#121212",
+        position: "absolute"
+    },
+    progressBar:{
+        marginTop: 57,
+    },
+    bold:{
+        fontWeight: 'bold',
+        fontSize: 14,
+    },
+    blueline:
+        {
+            position: 'absolute',
+
+            backgroundColor: '#0B76BC',
+            height: 26,
+            width: 345,
+            color: 'white',
+            flexDirection: 'row',
+
+        },
+    cleanPage: {
+        top: 5,
+        left: 15,
+        width: 200,
+        height: 17,
+        color: "#FFFFFF",
+        position: "absolute"
+    },
+
+    details: {
+        top: 5,
+        left: 285,
+        width: '50%',
+        height: 17,
+        color: "#FFFFFF",
+        position: "absolute"
+    },
+    checkbox:{
+        marginTop: 12,
+        marginLeft: 0,
+        backgroundColor: '#ecf0f1',
+
     },
 });

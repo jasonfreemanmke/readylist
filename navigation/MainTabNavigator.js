@@ -11,6 +11,7 @@ import SplashScreen from "../screens/SplashScreen";
 import tableScreen from "../screens/tableScreen";
 import switchLocations from "../screens/switchLocations";
 import ItemsScreen from "../screens/ItemsScreen";
+import items from "../screens/items";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
