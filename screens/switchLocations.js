@@ -7,6 +7,10 @@ import Footer from '../constants/Footer'
 import TouchableHighlight from "react-native-web/dist/exports/TouchableHighlight";
 import * as item from "expo";
 
+// const logos= {
+//  UCSF: <Image style={styles.logo}source={require('../assets/images/UCSF_196X19.png')} />,
+//  NYU: <Image style={styles.logoNYU}source={require('../assets/images/NYU_116X61.png')} />,
+// };
 export default class switchLocations extends React.Component {
     constructor(props){
         super(props);
@@ -70,8 +74,8 @@ export default class switchLocations extends React.Component {
 
             <View>
 
-
                 {/*<Image style={styles.logo}source={require('../assets/images/UCSF_196X19.png')} />*/}
+
                 <Image style={styles.logoNYU}source={require('../assets/images/NYU_116X61.png')} />
 
 

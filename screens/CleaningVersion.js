@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View, Button, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import {Table} from "react-native-table-component";
 import {Input} from "react-native-ui-kitten";
@@ -36,7 +36,7 @@ export default class RecentCleans extends React.Component {
                 },
                 body: JSON.stringify({
                     "jwt": token,
-                    "room_id": "2740"
+                    "room_id": "25"
                 })
             }).then(res => res.json());
             this.setState({cleans: cleans.cleaning_versions});
@@ -85,7 +85,7 @@ export default class RecentCleans extends React.Component {
                             <>
 
 
-
+<TouchableOpacity>
 
                                 <View style={styles.button}>
 
@@ -99,7 +99,7 @@ export default class RecentCleans extends React.Component {
 
 
                                 </View>
-
+</TouchableOpacity>
 
                             </>
                         )}

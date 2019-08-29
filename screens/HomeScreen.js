@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
   AsyncStorage,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import { Input, Button } from 'react-native-ui-kitten';
 import { MonoText } from '../components/StyledText';
@@ -124,6 +124,8 @@ export default class HomeScreen extends React.Component {
 
 
 
+
+
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
@@ -226,6 +228,7 @@ function DevelopmentModeNotice() {
 
 
         <Image style={styles.logo}source={require('../assets/images/logo2-min.png')} />
+
 
       </Text>
 

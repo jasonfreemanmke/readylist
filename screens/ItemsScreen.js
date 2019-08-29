@@ -62,14 +62,14 @@ export default class App extends React.Component {
                         maxValue={100}
                         value={this.state.progressCustomized}
                     />
-                    {/*<View style={styles.buttonContainer}>*/}
-                    {/*    <View style={styles.buttonInner}>*/}
-                    {/*        <Button*/}
-                    {/*            title="Increase 25%"*/}
-                    {/*            onPress={this.increase.bind(this, 'progressCustomized', 25)}*/}
-                    {/*        />*/}
-                    {/*    </View>*/}
-                    {/*</View>*/}
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.buttonInner}>
+                            <Button
+                                title="Increase 25%"
+                                onPress={this.increase.bind(this, 'progressCustomized', 25)}
+                            />
+                        </View>
+                    </View>
                 </View>
             <View style={styles.container}>
                 <Text style={styles.blueline}></Text>

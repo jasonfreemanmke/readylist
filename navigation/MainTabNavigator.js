@@ -45,7 +45,7 @@ HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
-    Links: RecentCleans,
+    Links: tableScreen,
   },
   config
 );
@@ -78,7 +78,7 @@ SettingsStack.path = '';
 
 const VerStack = createStackNavigator(
     {
-        Settings: test1,
+        Settings: CleaningVersion,
     },
     config
 );
