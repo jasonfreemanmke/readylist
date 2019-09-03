@@ -36,7 +36,7 @@ export default class dailyCleans extends React.Component {
                 },
                 body: JSON.stringify({
                     "jwt": token,
-                    "room_id": "2740"
+                    "room_id": "868"
                 })
             }).then(res => res.json());
             this.setState({cleans: cleans.cleaning_versions});
@@ -53,6 +53,13 @@ export default class dailyCleans extends React.Component {
 
 
 
+            <View style={styles.container2}>
+            <TextInput style = {styles.input}
+                       underlineColorAndroid = "transparent"
+                       placeholder = "Type Room Number"
+                       placeholderTextColor = "#9a73ef"
+                       autoCapitalize = "none"
+                       onChangeText = {this.handleRoomNumber}/>
 
 
 
@@ -105,7 +112,7 @@ export default class dailyCleans extends React.Component {
             </ScrollView>
 
 
-
+</View>
 
         );
 
@@ -124,7 +131,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 15,
         backgroundColor: '#fff',
-        width: "90%"
+        width: "90%",
+        marginTop: 50,
     },
     button: {
         backgroundColor: '#0d76bc',
@@ -162,6 +170,20 @@ const styles = StyleSheet.create({
         borderBottomColor: '#FFFFFF',
         flex:1,
     },
+    input: {
+        width: 275,
+        margin: 10,
+        height: 40,
+        borderColor: '#7a42f4',
+        borderWidth: 1,
+        textAlign: 'center',
+        marginBottom: 20,
+        marginLeft: 50,
+
+        position: "absolute",
+
+    },
+    container2: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff', marginTop: 20 },
 
 
 
