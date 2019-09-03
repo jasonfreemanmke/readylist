@@ -53,6 +53,7 @@ export default class ExampleOne extends Component
                 })
             }).then(res => res.json());
             this.setState({ cleans: cleans.recent_cleans });
+        
         } catch (error)
         {
             alert("You must be logged in")
@@ -91,7 +92,7 @@ export default class ExampleOne extends Component
                 <View style={styles.table}>
                     <Table borderStyle={{borderWidth: -1, borderColor: '#c8e1ff', borderBottomWidth: 1}}>
                         <Row data={state.tableHead} style={styles.head} textStyle={styles.text1} />
-                        <Rows data={state.tableData} textStyle={styles.text} />
+                        <Rows data={state.cleans} textStyle={styles.text} />
                     </Table>
                 </View>
             </View>
