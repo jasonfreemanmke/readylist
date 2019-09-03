@@ -4,3 +4,6 @@
 * Pick Recent Clean, save the room number and id number, save globally. Needed on different page
 * Send Id back to server with token
 * Have logo change on main page
+
+here is a link to the designs
+https://3eovvn.axshare.com
