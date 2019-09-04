@@ -5,7 +5,7 @@ import {
     Dimensions,
     Button,
     Alert,
-    Text,
+    Text, ScrollView, TextInput,
 } from 'react-native';
 
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
@@ -37,6 +37,46 @@ export default class App extends React.Component {
         this.setState({
             [key]: this.state[key] + value,
         });
+    }
+
+
+    getRecentCleans = async (token) => {
+        try{
+            let cleans = await fetch('https://pilot.readylist.com/mobile/get_cleaning_versions.php', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "jwt": token,
+                    "room_id": "25"
+                })
+            }).then(res => res.json());
+            this.setState({cleans: cleans.cleaning_versions});
+        } catch(error){
+            alert("You must be logged in")
+        }
+    }
+
+    getCleanItems = async (token) => {
+        try{
+            let cleans = await fetch('https://pilot.readylist.com/mobile/get_cleaning_items.php', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "jwt": token,
+                    "room_id": "868",
+                    "cleaning_version_id": "7"
+                })
+            }).then(res => res.json());
+            this.setState({selctedItems: cleans.name});
+        } catch(error){
+            alert("You must be logged in")
+        }
     }
 
     render() {
@@ -132,6 +172,50 @@ export default class App extends React.Component {
                         selectedItems={this.state.selectedItems}
                         onSelectionsChange={this.onSelectionsChange} />
                 </View>
+
+                <ScrollView >
+                
+
+                { !this.state.loggedIn ? (
+                    <Text></Text>
+                ): (
+
+
+
+
+
+                    <FlatList
+                        data={this.state.cleans}
+                        renderItem={({ item }) => (
+                            <>
+
+
+<TouchableOpacity>
+
+                                <View style={styles.button}>
+
+                                    <Button
+                                        // onPress = {handlePress}
+                                        title={item.name}
+                                    color = "white"
+
+                                    />
+
+
+
+                                </View>
+</TouchableOpacity>
+
+                            </>
+                        )}
+                        keyExtractor={item => item.id}
+                    />
+
+                )}
+
+
+
+            </ScrollView>
             </View>
 
 

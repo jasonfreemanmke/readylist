@@ -12,6 +12,7 @@ import tableScreen from "../screens/tableScreen";
 import switchLocations from "../screens/switchLocations";
 import ItemsScreen from "../screens/ItemsScreen";
 import test1 from "../screens/test1"
+import test2 from "../screens/test2";
 
 
 
@@ -150,7 +151,7 @@ LocStack.path = '';
 
 const ItemsStack = createStackNavigator(
     {
-        Links: ItemsScreen,
+        Links: test2,
     },
     config
 );
