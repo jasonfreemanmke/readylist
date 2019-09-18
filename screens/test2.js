@@ -1,79 +1,128 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View, ImageBackground, CheckBox} from 'react-native';
+import { Dropdown } from 'react-native-material-dropdown';
+import { ExpoLinksView } from '@expo/samples';
+import {Table} from "react-native-table-component";
+import Autocomplete from "react-native-autocomplete-input";
+
+
+export default class test2 extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            loading: true,
+            cleans: [],
+            error: null,
+            loggedIn: false,
+
+        }
+    }
+    async componentDidMount(){
+        try {
+            let token = await AsyncStorage.getItem("token");
+            await this.getRecentCleans(token);
+            this.setState({loggedIn: true });
+        } catch {
+            this.setState({ loggedIn: false });
+        }
+    }
+
+    getRecentCleans = async (token) => {
+        try{
+            let cleans = await fetch('https://pilot.readylist.com/mobile/get_cleaning_items.php', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    // "jwt": token
+
+                    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc2MTEyNTcsImRhdGEiOnsiaWQiOiI3MTEiLCJmaXJzdF9uYW1lIjoiVGVzdCIsImxhc3RfbmFtZSI6IlNtaXRoMSIsIm9yZ19pZCI6IjQiLCJ1c2VyX3R5cGVfaWQiOiIyIn19.7nyIdSSaOVwcd-EA6nM-ZR3Gbwhvg8JPkfZ51tUrL70",
+                    "room_id": "921",
+                    "cleaning_version_id": "8"
+                })
+            }).then(res => res.json());
+            this.setState({cleans: cleans.items});
+        } catch(error){
+            alert("You must be logged in")
+        }
+    }
+
+    getHeader(){
+
+    }
+
+    render() {
+        return (
+
+            <ScrollView style = { styles.container } >
+
+
+                { !this.state.loggedIn ? (
+                    <Text></Text>
+
+                ): (
+
+                    <FlatList
+                        data={this.state.cleans}
+                        renderItem={({ item }) => (
+                            <>
+
+                                <View/>
+                                <CheckBox>{item.name} </CheckBox>
+                                <View style={styles.separator} />
+                            </>
+
+                        )}
+                        keyExtractor={item => item.room}
+                    />
+                )}
+
+                <View>
+                    <View style={styles.autocompleteContainer}>
+                        <Autocomplete {/* your props */} />
+                    </View>
+                    <View>
+                        <Text>Some content</Text>
+                    </View>
+                </View>
+            </ScrollView>
 
 
 
+        );
 
-
-
-
-export default function SplashScreenA() {
-
-
-    return (
-
-
-
-        <View style={styles.container}>
-
-
-
-
-
-
-
-
-            <ImageBackground
-                style={styles.bgImage}
-                source={require('../assets/images/window2-min.jpg')}>
-
-
-                <Image style={styles.logo}source={require('../assets/images/logo2-min.png')} />
-                <Text style={styles.textStyle}>Advancing healthcare quality by transforming hospital service teams.</Text>
-            </ImageBackground>
-
-
-        </View>
-
-    );
+    }
 }
+
+
+
+
+test2.navigationOptions = {
+    title: 'test2',
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: 15,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        width: "90%"
+    },
+    separator: {
+        marginVertical: 5,
+        borderWidth: 0.5,
+        borderColor: '#DCDCDC',
     },
 
-
-    logo:
-        {
-
-            width: "75%",
-            marginTop: 50,
-            padding: 25,
-            marginBottom: 60,
-            marginLeft: 50 ,
-        },
-    textStyle:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: "center",
-        color: "black",
-        marginBottom: 250,
-        width: 250,
-        height: 128,
-        marginLeft: 60,
-
-    },
-    bgImage:{
+    autocompleteContainer: {
         flex: 1,
-
+        left: 0,
         position: 'absolute',
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        resizeMode: 'cover',
+        right: 0,
+        top: 0,
+        zIndex: 1
     },
+
 });

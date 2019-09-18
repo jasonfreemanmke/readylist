@@ -24,7 +24,7 @@ export default class App extends React.Component {
         progress: 20,
         progressWithOnComplete: 0,
         progressCustomized: 0,
-        selectedItems: [],
+        cleans: [],
 
 
     }
@@ -73,7 +73,7 @@ export default class App extends React.Component {
                     "cleaning_version_id": "7"
                 })
             }).then(res => res.json());
-            this.setState({selctedItems: cleans.name});
+            this.setState({selectedItems: cleans.name});
         } catch(error){
             alert("You must be logged in")
         }
@@ -174,7 +174,7 @@ export default class App extends React.Component {
                 </View>
 
                 <ScrollView >
-                
+
 
                 { !this.state.loggedIn ? (
                     <Text></Text>
@@ -185,7 +185,7 @@ export default class App extends React.Component {
 
 
                     <FlatList
-                        data={this.state.cleans}
+                        data={this.state.selectedItems}
                         renderItem={({ item }) => (
                             <>
 
