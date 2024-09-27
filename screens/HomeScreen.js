@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import {
+import
+{
   Image,
   Platform,
   ScrollView,
@@ -9,31 +10,40 @@ import {
   TouchableOpacity,
   View,
   AsyncStorage,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import { Input, Button } from 'react-native-ui-kitten';
 import { MonoText } from '../components/StyledText';
 import { Formik } from 'formik';
+import { Ionicons } from '@expo/vector-icons';
+import { Asset } from 'expo-asset';
 
 
-export default class HomeScreen extends React.Component {
-  constructor(props){
+export default class HomeScreen extends React.Component
+{
+  constructor(props)
+  {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      backgroundImage: require('./images/building.png')
     }
   }
 
-  async componentDidMount(){
-    try {
+  async componentDidMount()
+  {
+    try
+    {
       let token = await AsyncStorage.getItem("token");
-      this.setState({loggedIn: true })
+      this.setState({ loggedIn: true })
     } catch {
       this.setState({ loggedIn: false })
     }
   }
-  getToken = async () => {
-    try {
+  getToken = async () =>
+  {
+    try
+    {
       let token = await AsyncStorage.getItem("token");
       alert(token);
     } catch {
@@ -41,141 +51,157 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  login = async (user) => {
-    try{
-    let token = await fetch(`https://pilot.readylist.com/mobile/authorize/login.php`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+  getLocation = async () =>
+  {
+    try
+    {
+      let location = await AsyncStorage.getItem("location");
+      alert(location);
+    } catch {
+      alert("No token");
+    }
+  }
+
+  login = async (user) =>
+  {
+    try
+    {
+      let token = await fetch(`https://pilot.readylist.com/mobile/authorize/login.php`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           "user_name": user.username,
           "password": user.password
-      })
-    }).then(res => res.json());
-    //alert(token);
-    //alert(JSON.stringify(token));
-    return token
+        })
+      }).then(res => res.json());
+      //alert(token);
+      //alert(JSON.stringify(token));
+      return token
+      return location
     } catch {
       alert('Incorrect Username or password');
     }
   }
 
-  loginUser = async (values) => {
-    try{
+  loginUser = async (values) =>
+  {
+    try
+    {
       let token = await this.login(values);
       await AsyncStorage.setItem("token", token.jwt);
-      this.setState({loggedIn: true });
+      this.setState({ loggedIn: true });
       //alert(token);
-    } catch(error) {
+
+    } catch (error)
+    {
       // alert (error);
     }
   }
 
-  logout = async () => {
-    try{
+  logout = async () =>
+  {
+    try
+    {
       await AsyncStorage.removeItem('token');
-      this.setState({loggedIn: false})
+      this.setState({ loggedIn: false })
     } catch {
       alert('You are already logged out!')
     }
   }
 
-  render() {
-  return (
 
 
+  setLocation = async (values) =>
+  {
+    try
+    {
+      let token = await this.login(values);
+      await AsyncStorage.setItem("location", { location: location.name });
+      this.setState({ loggedIn: true });
+      alert(location);
+
+    } catch (error)
+    {
+      // alert (error);
+    }
+  }
 
 
-
-
-
-
-    <View style={styles.container}>
-
-
-
-
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                 // ? require('../assets/images/logo2.png')
-                 // : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-        { !this.state.loggedIn ? (
-          <View style={styles.getStartedContainer}>
-            <DevelopmentModeNotice />
-            <Formik
-              initialValues={{ username: '', password: '' }}
-              onSubmit={values => this.loginUser(values)}
-            >
-              {props => (
-                <View style={styles.helpContainer}>
-                  <Input
-                    placeholder="Username"
-                    onChangeText={props.handleChange('username')}
-                    onBlur={props.handleBlur('username')}
-                    value={props.values.username}
-                    autoCapitalize='none'
-                />
-
-                  <Input
-                         placeholder="Password"
-                    onChangeText={props.handleChange('password')}
-                    onBlur={props.handleBlur('password')}
-                    value={props.values.password}
-                    secureTextEntry={true}
-                         autoCapitalize='none'/>
-
-                  <Button onPress={props.handleSubmit}>Login</Button>
-
-                </View>
-              )}
-            </Formik>
+  render()
+  {
+    return (
+      <View>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}>
+          <View style={styles.welcomeContainer}>
+            <Image
+              source={
+                __DEV__
+                // ? require('../assets/images/logo2.png')
+                // : require('../assets/images/robot-prod.png')
+              }
+              style={styles.welcomeImage}
+            />
           </View>
-        ): (
-        <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
+          {!this.state.loggedIn ? (
+            <View style={styles.getStartedContainer}>
+              <DevelopmentModeNotice />
+              <Formik
+                initialValues={{ username: '', password: '' }}
+                onSubmit={values => this.loginUser(values)}
+              >
+                {props => (
+                  <View style={styles.helpContainer}>
+                    <Input
+                      placeholder="Username"
+                      onChangeText={props.handleChange('username')}
+                      onBlur={props.handleBlur('username')}
+                      value={props.values.username}
+                      autoCapitalize='none'
+                    />
+
+                    <Input
+                      placeholder="Password"
+                      onChangeText={props.handleChange('password')}
+                      onBlur={props.handleBlur('password')}
+                      value={props.values.password}
+                      secureTextEntry={true}
+                      autoCapitalize='none' />
+
+                    <Button onPress={props.handleSubmit}>Login</Button>
+
+                  </View>
+                )}
+              </Formik>
+            </View>
+          ) : (
+              <View style={styles.helpContainer}>
+                <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+                  <Text style={styles.helpLinkText}>
+                    Help, it didn’t automatically reload!
               </Text>
-              <Button onPress={this.logout}>Logout</Button>
-            </TouchableOpacity>
+                  <Button onPress={this.logout}>Logout</Button>
+                </TouchableOpacity>
+              </View>
+            )}
+        </ScrollView>
+        <View style={styles.tabBarInfoContainer}>
+          {/*<Text style={styles.tabBarInfoText}>*/}
+          {/*  This is a tab bar. You can edit it in:*/}
+          {/*</Text>*/}
+          <View
+            style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+            <MonoText style={styles.codeHighlightText}>
+              {/*navigation/MainTabNavigator.js*/}
+            </MonoText>
+          </View>
         </View>
-        )}
-
-
-
-      </ScrollView>
-
-
-      <View style={styles.tabBarInfoContainer}>
-        {/*<Text style={styles.tabBarInfoText}>*/}
-        {/*  This is a tab bar. You can edit it in:*/}
-        {/*</Text>*/}
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            {/*navigation/MainTabNavigator.js*/}
-          </MonoText>
-
-        </View>
-
       </View>
-
-    </View>
-
-
-  );
+    )
   }
 }
 
@@ -183,8 +209,10 @@ HomeScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
+function DevelopmentModeNotice()
+{
+  if (__DEV__)
+  {
     const learnMoreButton = (
       <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
         Learn more
@@ -198,12 +226,14 @@ function DevelopmentModeNotice() {
       <Text style={styles.developmentModeText}>
 
 
-        <Image style={styles.logo}source={require('../assets/images/logo2-min.png')} />
+        <Image style={styles.logo} source={require('../assets/images/logo2-min.png')} />
+
 
       </Text>
 
     );
-  } else {
+  } else
+  {
     return (
       <Text style={styles.developmentModeText}>
         You are not in development mode: your app will run at full speed.
@@ -215,13 +245,15 @@ function DevelopmentModeNotice() {
 }
 
 
-function handleLearnMorePress() {
+function handleLearnMorePress()
+{
   WebBrowser.openBrowserAsync(
     'https://docs.expo.io/versions/latest/workflow/development-mode/'
   );
 }
 
-function handleHelpPress() {
+function handleHelpPress()
+{
   WebBrowser.openBrowserAsync(
     'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
   );
@@ -314,7 +346,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
-  bgImage:{
+  bgImage: {
     flex: 1,
 
     position: 'absolute',

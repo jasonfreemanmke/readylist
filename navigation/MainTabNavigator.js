@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
+import { Ionicons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import RecentCleans from '../screens/RecentCleans';
@@ -9,6 +9,12 @@ import CleanScreen from '../screens/cleanScreen';
 import CleaningVersion from "../screens/CleaningVersion";
 import SplashScreen from "../screens/SplashScreen";
 import tableScreen from "../screens/tableScreen";
+import switchLocations from "../screens/switchLocations";
+import ItemsScreen from "../screens/ItemsScreen";
+import test1 from "../screens/test1"
+import test2 from "../screens/test2";
+
+
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -40,7 +46,7 @@ HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
-    Links: RecentCleans,
+    Links: tableScreen,
   },
   config
 );
@@ -79,7 +85,7 @@ const VerStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-    tabBarLabel: 'Cleaning Version',
+    tabBarLabel: 'test',
     tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
     ),
@@ -116,7 +122,7 @@ const tableStack = createStackNavigator(
 
 SettingsStack.navigationOptions = {
 
-    tabBarLabel: 'table',
+    tabBarLabel: 'Rooms List',
     tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
     ),
@@ -126,14 +132,52 @@ SettingsStack.path = '';
 
 
 
+const LocStack = createStackNavigator(
+    {
+        Settings: switchLocations,
+    },
+    config
+);
+
+LocStack.navigationOptions = {
+    tabBarLabel: 'Switch Locations',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    ),
+};
+
+LocStack.path = '';
+
+
+const ItemsStack = createStackNavigator(
+    {
+        Links: test2,
+    },
+    config
+);
+
+ItemsStack.navigationOptions = {
+    tabBarLabel: 'Items',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    ),
+};
+
+ItemsStack.path = '';
+
+
+
+
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
     VerStack,
-    SplashStack,
-    tableStack,
-
+    // SplashStack,
+    // tableStack,
+LocStack,
+    ItemsStack,
 });
 
 tabNavigator.path = '';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View } from 'react-native';
+import { ScrollView, StyleSheet, FlatList, Text, AsyncStorage, View, ImageBackground} from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 import { ExpoLinksView } from '@expo/samples';
 import {Table} from "react-native-table-component";
@@ -50,11 +50,6 @@ export default class RecentCleans extends React.Component {
   render() {
     return (
 
-
-
-
-
-
       <ScrollView style = { styles.container } >
 
 
@@ -80,10 +75,6 @@ export default class RecentCleans extends React.Component {
 
 
       </ScrollView>
-
-
-
-
 
     );
 
